@@ -1,0 +1,29 @@
+---
+- name: Drop-In Directory
+  file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    mode: 0755
+  tags: docker
+
+- name: Drop-In Flannel
+  template:
+    src: 40-flannel.conf.j2
+    dest: /etc/systemd/system/docker.service.d/40-flannel.conf
+    mode: 0644
+  notify:
+  - docker_systemd
+  tags: docker_dropin
+
+- name: CNI Configuration Directory
+  file:
+    path: /etc/kubernetes/cni
+    state: directory
+    recurse: true
+
+- name: CNI Configuration
+  template:
+    src: docker_opts_cni.env.j2
+    dest: /etc/kubernetes/cni/docker_opts_cni.env
+    mode: 0644
+  tags: docker_cni
