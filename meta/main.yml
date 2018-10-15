@@ -2,11 +2,32 @@
 dependencies: []
 
 galaxy_info:
-  author: mc
-  min_ansible_version: 2.0
+  author: geerlingguy
+  description: Docker for Linux.
+  company: "Midwestern Mac, LLC"
+  license: "license (BSD, MIT)"
+  min_ansible_version: 2.4
   platforms:
-  - name: CoreOS
+  - name: EL
+    versions:
+    - 6
+    - 7
+  - name: Fedora
     versions:
     - all
+  - name: Debian
+    versions:
+    - jessie
+  - name: Ubuntu
+    versions:
+    - trusty
+    - xenial
+    - bionic
   galaxy_tags:
-  - docker
+    - web
+    - system
+    - containers
+    - docker
+    - orchestration
+    - compose
+    - server
