@@ -21,6 +21,13 @@
     group: root
     mode: 0644
 
+- name: Enabled Docker repository
+  ini_file:
+    dest: '/etc/yum.repos.d/docker-{{ docker_edition }}.repo'
+    section: 'docker-{{ docker_edition }}-stable'
+    option: enabled
+    value: '{{ docker_yum_repo_enable }}'
+
 - name: Configure Docker Edge repo.
   ini_file:
     dest: '/etc/yum.repos.d/docker-{{ docker_edition }}.repo'
