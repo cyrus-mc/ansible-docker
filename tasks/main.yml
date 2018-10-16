@@ -11,6 +11,12 @@
     state: "{{ docker_package_state }}"
   notify: restart docker
 
+- name: Install PIP Docker
+  pip:
+    name: "{{ item }}"
+    state: "{{ docker_pip_package_state }}"
+  with_items: "{{ docker_pip_package }}"
+
 - name: Ensure Docker is started and enabled at boot.
   service:
     name: docker
